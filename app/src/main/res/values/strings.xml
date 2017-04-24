@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">SoccerStreams</string>
+    <string name="Streams">Streams</string>
+    <string name="no_streams_available">No Streams Available</string>
+    <string name="matches_become_available_1_hour_before_kick_off">Matches become available 1 hour before kick-off</string>
+</resources>

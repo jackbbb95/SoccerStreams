@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:clickable="true">
+
+    <ImageView
+        android:id="@+id/thumbs_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/thumbs_up"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"/>
+
+    <TextView
+        android:id="@+id/rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/thumbs_up"
+        android:layout_toEndOf="@+id/thumbs_up"
+        android:padding="8dp"
+        android:text="#"/>
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/rating"
+        android:layout_toEndOf="@+id/rating"
+        android:padding="8dp"
+        android:textAppearance="@style/HeaderTextStyle"
+        android:text="TITLE"/>
+
+    <TextView
+        android:id="@+id/type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/quality"
+        android:layout_toStartOf="@+id/quality"
+        android:padding="8dp"
+        android:text="TYPE"/>
+
+    <TextView
+        android:id="@+id/quality"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/language"
+        android:layout_toStartOf="@+id/language"
+        android:padding="8dp"
+        android:text="HD" />
+
+    <TextView
+        android:id="@+id/language"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/mobile"
+        android:layout_toStartOf="@+id/mobile"
+        android:padding="8dp"
+        android:text="LANGUAGE"/>
+
+    <ImageView
+        android:id="@+id/mobile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:padding="8dp"
+        android:src="@drawable/mobile"/>
+
+
+
+</RelativeLayout>
