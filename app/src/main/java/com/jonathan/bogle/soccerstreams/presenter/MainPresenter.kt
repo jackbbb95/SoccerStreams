@@ -1,6 +1,8 @@
 package com.jonathan.bogle.soccerstreams.presenter
 
-import com.jonathan.bogle.soccerstreams.view.fragment.StreamDialogFragment
+import com.jonathan.bogle.soccerstreams.model.Match
+import com.jonathan.bogle.soccerstreams.model.Stream
+import io.reactivex.Observable
 
 /**
 * Created by bogle on 4/11/17.
@@ -8,8 +10,8 @@ import com.jonathan.bogle.soccerstreams.view.fragment.StreamDialogFragment
 
 interface MainPresenter {
 
-    fun getMatches()
+    fun getMatches(): Observable<ArrayList<Match>>
 
-    fun getStreams(matchLink: String, streamFrag: StreamDialogFragment)
+    fun getStreams(matchLink: String): Observable<ArrayList<Stream>>
 
 }

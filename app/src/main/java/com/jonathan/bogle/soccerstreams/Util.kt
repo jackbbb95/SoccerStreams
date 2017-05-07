@@ -2,9 +2,9 @@ package com.jonathan.bogle.soccerstreams
 
 import android.app.Activity
 import android.content.Context
-import android.widget.Toast
 import android.util.DisplayMetrics
 import android.view.animation.*
+import android.widget.Toast
 
 
 /**
@@ -66,6 +66,27 @@ fun Activity.getSlideInAnimation(): LayoutAnimationController {
     // Set up the animation controller              (second parameter is the delay)
     return LayoutAnimationController(set, 0.2f)
 }
+
+
+fun Activity.getSlideOutAnimation(): LayoutAnimationController {
+    val set = AnimationSet(true)
+
+    // Fade in animation
+    val fadeIn = AlphaAnimation(0.0f, 1.0f)
+    fadeIn.duration = 400
+    fadeIn.fillAfter = true
+    set.addAnimation(fadeIn)
+
+    // Slide up animation from bottom of screen
+    val slideUp = TranslateAnimation(0f,getScreenWidth().toFloat(), 0f, 0f)
+    slideUp.interpolator = DecelerateInterpolator(4f)
+    slideUp.duration = 400
+    set.addAnimation(slideUp)
+
+    // Set up the animation controller              (second parameter is the delay)
+    return LayoutAnimationController(set, 0.2f)
+}
+
 
 
 fun String.toNormalCase(): String {

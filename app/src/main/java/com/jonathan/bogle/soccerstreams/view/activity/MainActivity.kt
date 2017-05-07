@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
 
+
         mFragment = MatchFragment.newInstance()
 
         supportFragmentManager

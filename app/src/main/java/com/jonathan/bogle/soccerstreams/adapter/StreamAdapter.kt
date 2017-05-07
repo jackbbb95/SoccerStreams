@@ -10,8 +10,6 @@ import com.jonathan.bogle.soccerstreams.model.Stream
 import com.jonathan.bogle.soccerstreams.view.activity.MainActivity
 import com.jonathan.bogle.soccerstreams.view.activity.PlayStreamActivity
 import kotlinx.android.synthetic.main.adapter_stream.view.*
-import android.support.v4.content.ContextCompat.startActivity
-
 
 
 /**

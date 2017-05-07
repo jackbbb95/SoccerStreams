@@ -8,6 +8,7 @@ import com.bumptech.glide.Glide
 import com.jonathan.bogle.soccerstreams.R
 import com.jonathan.bogle.soccerstreams.adapter.CompAdapter.CompViewHolder
 import com.jonathan.bogle.soccerstreams.model.Comp
+import com.jonathan.bogle.soccerstreams.model.Match
 import com.jonathan.bogle.soccerstreams.view.fragment.MatchFragment
 import kotlinx.android.synthetic.main.adapter_comp.view.*
 
@@ -15,7 +16,7 @@ import kotlinx.android.synthetic.main.adapter_comp.view.*
 /**
  * Created by bogle on 4/11/17.
  */
-class CompAdapter(val comps: ArrayList<Comp>, val is24h: Boolean, val fragment: MatchFragment): RecyclerView.Adapter<CompViewHolder>() {
+class CompAdapter(var comps: ArrayList<Comp>, val is24h: Boolean, val fragment: MatchFragment): RecyclerView.Adapter<CompViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CompViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -25,12 +26,26 @@ class CompAdapter(val comps: ArrayList<Comp>, val is24h: Boolean, val fragment: 
 
     override fun onBindViewHolder(holder: CompViewHolder, position: Int) {
         holder.bindComp(comps, position)
-
     }
 
     override fun getItemCount(): Int {
        return comps.size
     }
+
+    override fun getItemViewType(position: Int): Int {
+        return position
+    }
+
+    fun clear() {
+        comps.clear()
+        notifyDataSetChanged()
+    }
+
+    fun addAll(comps: ArrayList<Comp>) {
+        this.comps = comps;
+        notifyDataSetChanged()
+    }
+
 
     inner class CompViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -40,13 +55,11 @@ class CompAdapter(val comps: ArrayList<Comp>, val is24h: Boolean, val fragment: 
                 itemView.comp.text = compName
                 Glide.with(itemView.context).load(compSrc).fitCenter().into(itemView.comp_src)
 
-                itemView.comp_match_layout.setMatches(MatchAdapter(matches,is24h, fragment))
+                itemView.comp_match_layout.setMatches(MatchAdapter(comp,is24h, fragment))
 
             }
 
         }
-
-
 
     }
 }

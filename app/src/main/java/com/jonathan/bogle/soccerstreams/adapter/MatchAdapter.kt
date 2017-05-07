@@ -1,26 +1,22 @@
 package com.jonathan.bogle.soccerstreams.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.GONE
-import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.bumptech.glide.Glide
 import com.jonathan.bogle.soccerstreams.R
+import com.jonathan.bogle.soccerstreams.model.Comp
 import com.jonathan.bogle.soccerstreams.model.Match
-import com.jonathan.bogle.soccerstreams.toast
 import com.jonathan.bogle.soccerstreams.view.activity.MainActivity
 import com.jonathan.bogle.soccerstreams.view.fragment.MatchFragment
-import com.jonathan.bogle.soccerstreams.view.fragment.StreamDialogFragment
-import kotlinx.android.synthetic.main.adapter_comp.view.*
+import com.jonathan.bogle.soccerstreams.view.fragment.StreamFragment
 import kotlinx.android.synthetic.main.adapter_match.view.*
 
 /**
  * Created by bogle on 4/17/17.
  */
-class MatchAdapter(val matches: ArrayList<Match>, val is24h: Boolean, val fragment: MatchFragment): BaseAdapter() {
+class MatchAdapter(val comp: Comp, val is24h: Boolean, val fragment: MatchFragment): BaseAdapter() {
 
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
@@ -34,14 +30,14 @@ class MatchAdapter(val matches: ArrayList<Match>, val is24h: Boolean, val fragme
         } else
             vh = convertView.tag as MatchViewHolder
 
-        vh.bindMatch(matches.get(position),position)
+        vh.bindMatch(comp.matches.get(position),position)
 
         return view
 
     }
 
     override fun getItem(position: Int): Match {
-        return matches.get(position)
+        return comp.matches.get(position)
     }
 
     override fun getItemId(position: Int): Long {
@@ -49,14 +45,8 @@ class MatchAdapter(val matches: ArrayList<Match>, val is24h: Boolean, val fragme
     }
 
     override fun getCount(): Int {
-        return matches.size
+        return comp.matches.size
     }
-
-
-
-
-
-
 
 
 
@@ -65,7 +55,6 @@ class MatchAdapter(val matches: ArrayList<Match>, val is24h: Boolean, val fragme
 
         fun bindMatch(match: Match, pos: Int) {
             with(match) {
-
                 itemView.team1.text = team1
                 Glide.with(itemView.context).load(team1Src).fitCenter().into(itemView.team1_src)
 
@@ -75,9 +64,10 @@ class MatchAdapter(val matches: ArrayList<Match>, val is24h: Boolean, val fragme
                 if (is24h) itemView.time.text = time24 else itemView.time.text = time12
 
                 itemView.setOnClickListener {
-                    val streamDialogFragment = StreamDialogFragment(match,is24h,(fragment.activity as MainActivity))
-                    streamDialogFragment.show(fragment.fragmentManager,"Stream Fragment")
-                    fragment.mPresenter.getStreams(match.link,streamDialogFragment)
+                    val streamFragment = StreamFragment(match,is24h,(fragment.activity as MainActivity))
+                    (fragment.activity as MainActivity).supportFragmentManager.beginTransaction().addToBackStack(null)
+                            .add(R.id.fragment_container,streamFragment,"Stream_fragment").commit()
+                    //streamDialogFragment.show(fragment.fragmentManager,"Stream Fragment")
 
                 }
             }
